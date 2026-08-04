@@ -6,4 +6,8 @@ import androidx.lifecycle.ViewModel
 class VmViewModel: ViewModel() {
     var count = 0
 
+    fun incrementCount(){
+        count++
+    }
+
 }

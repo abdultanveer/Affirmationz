@@ -1,6 +1,7 @@
 package com.example.affirmations
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -18,13 +19,27 @@ class VMActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vmactivity)
+        Log.i("VmActivitiy"," activvity created")
+
         countTextView = findViewById<TextView>(R.id.tvCount)
         countTextView.setText(""+viewModel.count)
 
     }
 
     fun handleButtonClick(view: View) {
-        viewModel.incrementCount()
+        viewModel.startTimer()
+       // viewModel.incrementCount()
         countTextView.setText(""+viewModel.count)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("VmActivitiy","stopped activvity")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("VmActivitiy"," activvity destroyed")
+
     }
 }

@@ -21,7 +21,7 @@ plugins {
 
 android {
     namespace = "com.example.affirmations"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.affirmations"

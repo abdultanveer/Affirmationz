@@ -9,12 +9,20 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 import kotlin.getValue
 
 class VMActivity : AppCompatActivity() {
     private val viewModel: VmViewModel by viewModels()
 
     lateinit var countTextView: TextView
+
+    var secsObserverphno: Observer<Int> = object : Observer<Int> {
+        override fun onChanged(seconds: Int) {
+            //receiving the updates/notification
+            countTextView.setText(seconds.toString())
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +31,15 @@ class VMActivity : AppCompatActivity() {
 
         countTextView = findViewById<TextView>(R.id.tvCount)
         countTextView.setText(""+viewModel.count)
+        viewModel._seconds.observe(this, secsObserverphno);
 
     }
 
     fun handleButtonClick(view: View) {
         viewModel.startTimer()
+        countTextView.setText(""+viewModel._seconds)
        // viewModel.incrementCount()
-        countTextView.setText(""+viewModel.count)
+       // countTextView.setText(""+viewModel.count)
     }
 
     override fun onStop() {

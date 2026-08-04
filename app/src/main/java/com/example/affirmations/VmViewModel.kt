@@ -2,11 +2,13 @@ package com.example.affirmations
 
 import android.os.CountDownTimer
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 //viewmodel = RAM = survivves the config
 class VmViewModel: ViewModel() {
     var count = 0
+    var _seconds = MutableLiveData<Int>()//observable data
     lateinit var timer: CountDownTimer
 
 
@@ -17,7 +19,7 @@ class VmViewModel: ViewModel() {
             }
 
             override fun onTick(timeLeft: Long) {
-                count = timeLeft.toInt()
+                _seconds.value = timeLeft.toInt()
                 Log.i("viewmodel","timeleft ="+timeLeft.toInt())
             }
         }.start()

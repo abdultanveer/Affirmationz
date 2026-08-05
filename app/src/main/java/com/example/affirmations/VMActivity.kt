@@ -1,5 +1,7 @@
 package com.example.affirmations
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -51,5 +53,15 @@ class VMActivity : AppCompatActivity() {
         super.onDestroy()
         Log.i("VmActivitiy"," activvity destroyed")
 
+    }
+
+    fun handleDial(view: View) {
+        //explicit intent == passing the name of the class
+        var dialIntent = Intent(this, MainActivity::class.java)
+         //implicit intent -- commponent to be invoked is determined by action string or the data
+        //Intent(Intent.ACTION_VIEW,Uri.parse("https://www.yahoo.com"))
+            //Intent(Intent.ACTION_DIAL, Uri.parse("tel:98765432"))
+
+        startActivity(dialIntent)
     }
 }
